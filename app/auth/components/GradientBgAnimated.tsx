@@ -1,13 +1,9 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 
-import { animatedText, getAnimatedGradient } from '../constants/animated';
-import { Grandstander } from 'next/font/google';
+import Logo from '@/app/components/shared/Logo';
 
-const grandstander = Grandstander({
-  subsets: ['latin'],
-  display: 'swap',
-});
+import { animatedText, getAnimatedGradient } from '../constants/animated';
 
 const GradientBgAnimated: FC<{
   form: 'sign-in' | 'sign-up';
@@ -16,6 +12,8 @@ const GradientBgAnimated: FC<{
     form === 'sign-in'
       ? 'Accede a tu portal de gestión y lleva el control en tus manos.'
       : 'Empieza a controlar tu inventario con eficiencia, regístrate hoy mismo.';
+
+  const MotionLogo = motion(Logo);
 
   return (
     <motion.section
@@ -27,16 +25,13 @@ const GradientBgAnimated: FC<{
       transition={{ duration: 1, ease: 'linear' }}
     >
       <article className="w-[70%] flex flex-col justify-center">
-        <motion.h1
+        <MotionLogo
           variants={animatedText}
           transition={{ duration: 0.4, ease: 'easeInOut', delay: 0.8 }}
-          className={`text-8xl font-bold bg-text-gradient bg-clip-text text-transparent text-center mb-20 ${grandstander.className}`}
-          style={{
-            WebkitTextStroke: '2.5px #c176fe',
-          }}
+          className="mb-20"
         >
           DomiSys
-        </motion.h1>
+        </MotionLogo>
 
         <motion.h2
           variants={animatedText}

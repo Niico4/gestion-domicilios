@@ -1,19 +1,29 @@
-import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
+
+import Title from '@/app/components/shared/Title';
+import TableData from '@/app/components/shared/data-table/TableData';
+import { mockOrders } from '@/app/mock/ordersMock';
+
+import { columns } from './components/Columns';
+import ModalNewOrder from './components/ModalNewOrder';
 
 export const metadata: Metadata = {
   title: 'Domicilios | DomiSys',
   description:
-    'La solución definitiva para gestionar y optimizar tus domicilios. Ya sea que estés a cargo de un negocio de entregas o busques mejorar la organización de tus pedidos, nuestra plataforma te ofrece una gestión ágil, eficiente y sin complicaciones.',
+    'Gestiona tus domicilios de forma eficiente y organizada con DomiSys. Desde el seguimiento en tiempo real hasta el control detallado de tus pedidos, esta sección te ofrece todas las herramientas necesarias para mantener tus entregas al día y optimizar la experiencia de tus clientes.',
 };
 
-export default function Home() {
+export default function OrdersPage() {
   return (
-    <div>
-      <main>
-        <h1>Pagina Principal</h1>
-        <Button>Test</Button>
-      </main>
-    </div>
+    <main className="h-full bg-white rounded-xl p-8">
+      <Title title="Gestión de Domicilios" />
+      <article className="mt-10">
+        <TableData
+          data={mockOrders}
+          columns={columns}
+          headerComponent={ModalNewOrder}
+        />
+      </article>
+    </main>
   );
 }
