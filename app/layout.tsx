@@ -1,7 +1,7 @@
 import { Raleway } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 
 import { NextUI } from './providers/nextui';
-import { Toaster } from 'react-hot-toast';
 import './style/globals.css';
 
 const raleway = Raleway({

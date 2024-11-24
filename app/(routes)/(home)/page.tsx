@@ -4,13 +4,13 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Domicilios | DomiSys',
   description:
-    'La solución definitiva para gestionar y optimizar tus domicilios. Ya sea que estés a cargo de un negocio de entregas o busques mejorar la organización de tus pedidos, nuestra plataforma te ofrece una gestión ágil, eficiente y sin complicaciones.',
+    'Gestiona tus domicilios de forma eficiente y organizada con DomiSys. Desde el seguimiento en tiempo real hasta el control detallado de tus pedidos, esta sección te ofrece todas las herramientas necesarias para mantener tus entregas al día y optimizar la experiencia de tus clientes.',
 };
 
-export default function Home() {
+export default function OrdersPage() {
   return (
     <div>
-      <main>
+      <main className="h-full bg-slate-100 rounded-xl">
         <h1>Pagina Principal</h1>
         <Button>Test</Button>
       </main>
