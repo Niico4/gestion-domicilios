@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .auth-screen-gradient {
+    background-image: linear-gradient(to top, #7db8ff 0%, #d8a7ff 100%);
+  }
+}

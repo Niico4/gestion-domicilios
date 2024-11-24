@@ -1,10 +1,10 @@
 import { Raleway } from 'next/font/google';
 
 import { NextUI } from './providers/nextui';
-
+import { Toaster } from 'react-hot-toast';
 import './style/globals.css';
 
-const raleRaleway = Raleway({
+const raleway = Raleway({
   subsets: ['latin'],
   display: 'swap',
 });
@@ -16,8 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${raleRaleway.className} antialiased`}>
+      <body className={`${raleway.className} antialiased `}>
         <NextUI>{children}</NextUI>
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
