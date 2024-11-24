@@ -1,5 +1,11 @@
-import { Button } from '@nextui-org/react';
 import { Metadata } from 'next';
+
+import Title from '@/app/components/shared/Title';
+import TableData from '@/app/components/shared/data-table/TableData';
+import { mockOrders } from '@/app/mock/ordersMock';
+
+import { columns } from './components/Columns';
+import ModalNewOrder from './components/ModalNewOrder';
 
 export const metadata: Metadata = {
   title: 'Domicilios | DomiSys',
@@ -9,11 +15,15 @@ export const metadata: Metadata = {
 
 export default function OrdersPage() {
   return (
-    <div>
-      <main className="h-full bg-slate-100 rounded-xl">
-        <h1>Pagina Principal</h1>
-        <Button>Test</Button>
-      </main>
-    </div>
+    <main className="h-full bg-white rounded-xl p-8">
+      <Title title="Gestión de Domicilios" />
+      <article className="mt-10">
+        <TableData
+          data={mockOrders}
+          columns={columns}
+          headerComponent={ModalNewOrder}
+        />
+      </article>
+    </main>
   );
 }

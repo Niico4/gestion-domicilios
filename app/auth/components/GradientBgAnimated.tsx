@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { motion } from 'framer-motion';
 
-import Logo from '@/app/components/Logo';
+import Logo from '@/app/components/shared/Logo';
 
 import { animatedText, getAnimatedGradient } from '../constants/animated';
 
