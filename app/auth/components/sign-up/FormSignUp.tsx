@@ -2,12 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+
 import {
   signUpSchema,
   SignUpType,
 } from '../../constants/validation/signUpSchema';
-import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 
 const FormSignUp = () => {
   const { push } = useRouter();
@@ -39,7 +40,7 @@ const FormSignUp = () => {
       console.log('Datos enviados', response);
       toast.success('Cuenta creada correctamente');
       setTimeout(() => {
-        push('/');
+        push('/dashboard/orders');
       }, 2000);
       reset();
     } catch (error) {

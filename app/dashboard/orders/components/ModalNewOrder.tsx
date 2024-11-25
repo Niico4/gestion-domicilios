@@ -13,8 +13,7 @@ import { IconPlus } from '@tabler/icons-react';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 
-import FormNewOrder from '@/app/(routes)/(home)/components/FormNewOrder';
-
+import FormNewOrder from '../components/FormNewOrder';
 import { NewOrderType } from '../constants/validation/newOrderSchema';
 
 const ModalNewOrder = () => {

@@ -29,7 +29,7 @@ const Sidebar = () => {
     toast.success('Sesión cerrada correctamente');
 
     setTimeout(() => {
-      push('/auth');
+      push('/');
     }, 1000);
   };
 
