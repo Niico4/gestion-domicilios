@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { PaymentType } from '@/app/interfaces/payments/payment-method';
+import { OrderState } from '@/app/interfaces/orders/order-state';
 
 export const newOrderSchema = z.object({
   clientFirstName: z
@@ -66,13 +67,17 @@ export const newOrderSchema = z.object({
         'El apellido del repartidor solo puede contener letras y espacios.',
     }),
   totalPayment: z
-    .string()
-    .trim()
-    .regex(/^\d{1,3}(\.\d{3})*(\.\d{1,2})?$/, {
-      message:
-        'El monto total debe ser un número válido con hasta dos decimales y separadores de miles opcionales.',
-    })
-    .min(1, { message: 'El monto total es obligatorio.' }),
+    .number()
+    .positive({ message: 'El monto debe ser mayor a 0.' })
+    .max(999999.99, { message: 'El monto no puede exceder 999,999.99.' }),
+  paymentType: z
+    .array(z.enum(Object.values(PaymentType) as [string, ...string[]]))
+    .min(1, { message: 'Debe seleccionar al menos un tipo de pago.' })
+    .max(1, { message: 'Solo se puede seleccionar un tipo de pago.' }),
+  orderState: z
+    .array(z.enum(Object.values(OrderState) as [string, ...string[]]))
+    .min(1, { message: 'Debe seleccionar al menos un estado.' })
+    .max(1, { message: 'Solo se puede seleccionar un estado.' }),
 });
 
 export type NewOrderType = z.infer<typeof newOrderSchema>;
