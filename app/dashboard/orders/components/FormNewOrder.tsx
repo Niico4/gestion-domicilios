@@ -1,3 +1,4 @@
+'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input, Textarea } from '@nextui-org/react';
 import React, { FC } from 'react';
@@ -19,48 +20,99 @@ const FormNewOrder: FC<{
   } = useForm({
     resolver: zodResolver(newOrderSchema),
     defaultValues: {
-      clientName: '',
+      clientFirstName: '',
+      clientLastName: '',
       numberContact: '',
-      direction: '',
+      address: '',
       products: '',
+      dealerFirstName: '',
+      dealerLastName: '',
+      totalPayment: '',
     },
   });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-      <div className="flex gap-4">
-        <Input
-          type="text"
-          label="Nombre del Cliente"
+      <div className="flex flex-col gap-4">
+        <span>Cliente</span>
+        <div className="flex gap-4">
+          <Input
+            type="text"
+            label="Nombre"
+            isRequired
+            isInvalid={!!errors.clientFirstName}
+            errorMessage={errors.clientFirstName?.message}
+            {...register('clientFirstName')}
+          />
+          <Input
+            type="text"
+            label="Apellido"
+            isRequired
+            isInvalid={!!errors.clientLastName}
+            errorMessage={errors.clientLastName?.message}
+            {...register('clientLastName')}
+          />
+        </div>
+        <div className="flex gap-4">
+          <Input
+            type="text"
+            label="Número de Contacto"
+            isRequired
+            isInvalid={!!errors.numberContact}
+            errorMessage={errors.numberContact?.message}
+            {...register('numberContact')}
+          />
+          <Input
+            type="text"
+            label="Dirección"
+            isRequired
+            isInvalid={!!errors.address}
+            errorMessage={errors.address?.message}
+            {...register('address')}
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <span>Repartidor</span>
+        <div className="flex gap-4">
+          <Input
+            type="text"
+            label="Nombre"
+            isRequired
+            isInvalid={!!errors.dealerFirstName}
+            errorMessage={errors.dealerFirstName?.message}
+            {...register('dealerFirstName')}
+          />
+          <Input
+            type="text"
+            label="Apellido"
+            isRequired
+            isInvalid={!!errors.dealerLastName}
+            errorMessage={errors.dealerLastName?.message}
+            {...register('dealerLastName')}
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <span>Extras</span>
+        <Textarea
+          label="Productos"
           isRequired
-          isInvalid={!!errors.clientName}
-          errorMessage={errors.clientName?.message}
-          {...register('clientName')}
+          isInvalid={!!errors.products}
+          errorMessage={errors.products?.message}
+          {...register('products')}
         />
         <Input
-          type="text"
-          label="Número de Contacto"
+          type="number"
+          label="Monto total"
           isRequired
-          isInvalid={!!errors.numberContact}
-          errorMessage={errors.numberContact?.message}
-          {...register('numberContact')}
+          isInvalid={!!errors.totalPayment}
+          errorMessage={errors.totalPayment?.message}
+          {...register('totalPayment')}
         />
       </div>
-      <Input
-        type="text"
-        label="Dirección"
-        isRequired
-        isInvalid={!!errors.direction}
-        errorMessage={errors.direction?.message}
-        {...register('direction')}
-      />
-      <Textarea
-        label="Productos"
-        isRequired
-        isInvalid={!!errors.products}
-        errorMessage={errors.products?.message}
-        {...register('products')}
-      />
 
       <div className="flex items-center gap-4 justify-end">
         <Button color="danger" variant="flat" onPress={onClose}>

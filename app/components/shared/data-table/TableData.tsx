@@ -18,7 +18,7 @@ import {
 import React from 'react';
 import { IconSearch } from '@tabler/icons-react';
 
-import { TableDataProps } from '@/app/constants/interfaces/table';
+import { TableDataProps } from '@/app/interfaces/table';
 import usePagination from '@/app/hooks/usePagination';
 
 const TableData = <T extends { id: string }>({
