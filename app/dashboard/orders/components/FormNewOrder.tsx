@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import {
   newOrderSchema,
   NewOrderType,
-} from '@/app/(routes)/(home)/constants/validation/newOrderSchema';
+} from '../constants/validation/newOrderSchema';
 
 const FormNewOrder: FC<{
   onSubmit: (data: NewOrderType) => void;

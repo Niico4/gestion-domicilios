@@ -2,13 +2,14 @@ import { Button, Input } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+
 import {
   signInSchema,
   SignInType,
 } from '../../constants/validation/signInSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 
 const FormSignIn = () => {
   const { push } = useRouter();
@@ -34,7 +35,7 @@ const FormSignIn = () => {
       console.log('Datos enviados', response);
       toast.success('Sesión iniciada correctamente');
       setTimeout(() => {
-        push('/');
+        push('/dashboard/orders');
       }, 2000);
       reset();
     } catch (error) {
