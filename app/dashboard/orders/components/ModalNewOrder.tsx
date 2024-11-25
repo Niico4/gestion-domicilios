@@ -48,7 +48,12 @@ const ModalNewOrder = () => {
       >
         Crear Domicilio
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="top-center"
+        size="2xl"
+      >
         <ModalContent>
           {(onClose) => (
             <>
