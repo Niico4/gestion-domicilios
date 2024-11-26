@@ -1,10 +1,16 @@
+'use client';
+
 import { Card, Button } from '@nextui-org/react';
 import { IconCircleArrowRightFilled } from '@tabler/icons-react';
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import img from '@/app/public/hero.webp';
+
+import { textVariants, imageVariants } from '../constants/animations';
+
 const HeroSection = () => {
   return (
     <section
@@ -12,7 +18,14 @@ const HeroSection = () => {
       className=" w-full h-screen flex flex-1 flex-col items-center justify-center gap-6 "
     >
       <div className="grid grid-cols-[50%_1fr] items-center justify-center mx-auto gap-10">
-        <article className="flex flex-col bg-transparent w-full p-6 gap-10">
+        <motion.article
+          className="flex flex-col bg-transparent w-full p-6 gap-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          variants={textVariants}
+        >
           <div className="flex flex-col items-start gap-4">
             <div className="flex flex-col items-center gap-1">
               <h1 className="text-6xl font-semibold text-slate-200 text-center">
@@ -46,16 +59,24 @@ const HeroSection = () => {
               Comenzar
             </Button>
           </div>
-        </article>
-        <Card className="bg-black/0" isBlurred>
-          <Image
-            src={img}
-            width={0}
-            height={0}
-            sizes="100vw"
-            alt="Imágenes de las analíticas"
-          />
-        </Card>
+        </motion.article>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8 }}
+          variants={imageVariants}
+        >
+          <Card className="bg-black/0" isBlurred>
+            <Image
+              src={img}
+              width={0}
+              height={0}
+              sizes="100vw"
+              alt="Imágenes de las analíticas"
+            />
+          </Card>
+        </motion.div>
       </div>
     </section>
   );
