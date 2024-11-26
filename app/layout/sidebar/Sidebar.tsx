@@ -17,10 +17,10 @@ import toast from 'react-hot-toast';
 import { IconCaretDown, IconLogout, IconSettings } from '@tabler/icons-react';
 
 import Logo from '@/app/components/shared/Logo';
+import { Rol } from '@/app/interfaces/users/user';
 
+import { navLinks } from '../routes/Sidebar.routes';
 import LinkItem from '../components/LinkItem';
-
-import { navLinks } from './Sidebar.routes';
 
 const Sidebar = () => {
   const { push } = useRouter();
@@ -29,7 +29,7 @@ const Sidebar = () => {
     toast.success('Sesión cerrada correctamente');
 
     setTimeout(() => {
-      push('/');
+      push('/auth/');
     }, 1000);
   };
 
@@ -52,7 +52,7 @@ const Sidebar = () => {
                   <User
                     as="button"
                     name="Zoe Lang"
-                    description="ADMIN"
+                    description={Rol.ADMIN}
                     className="transition-transform"
                     avatarProps={{
                       src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',
