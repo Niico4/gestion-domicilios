@@ -10,12 +10,13 @@ import {
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { PaymentType } from '@/app/interfaces/payments/payment-method';
+import { OrderState } from '@/app/interfaces/orders/order-state';
+
 import {
   newOrderSchema,
   NewOrderType,
-} from '../constants/validation/newOrderSchema';
-import { PaymentType } from '@/app/interfaces/payments/payment-method';
-import { OrderState } from '@/app/interfaces/orders/order-state';
+} from '../../../validations/newOrderSchema';
 
 const FormNewOrder: FC<{
   onSubmit: (data: NewOrderType) => void;

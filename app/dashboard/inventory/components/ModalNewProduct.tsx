@@ -13,14 +13,15 @@ import { IconPlus } from '@tabler/icons-react';
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 
-import FormNewOrder from '../components/FormNewOrder';
-import { NewOrderType } from '../../../validations/newOrderSchema';
+import { NewProductType } from '@/app/validations/newProductSchema';
 
-const ModalNewOrder = () => {
+import FormNewProduct from './FormNewProduct';
+
+const ModalNewProduct = () => {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { reset } = useForm();
 
-  const onSubmit = (data: NewOrderType) => {
+  const onSubmit = (data: NewProductType) => {
     console.log('Datos de la orden', data);
     try {
       const response = {
@@ -46,22 +47,22 @@ const ModalNewOrder = () => {
         color="secondary"
         className="bg-primary-gradient font-semibold text-lg tracking-wider"
       >
-        Crear Domicilio
+        Agregar Producto
       </Button>
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         placement="top-center"
-        size="2xl"
+        size="lg"
       >
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Agrega una nueva orden
+                Agrega un nuevo producto
               </ModalHeader>
               <ModalBody>
-                <FormNewOrder onSubmit={onSubmit} onClose={onClose} />
+                <FormNewProduct onSubmit={onSubmit} onClose={onClose} />
               </ModalBody>
             </>
           )}
@@ -71,4 +72,4 @@ const ModalNewOrder = () => {
   );
 };
 
-export default ModalNewOrder;
+export default ModalNewProduct;

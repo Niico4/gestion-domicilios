@@ -3,6 +3,8 @@ export interface User {
   rol?: Rol;
   firstName: string;
   lastName: string;
+  numberContact?: string;
+  email: string;
   password?: string;
 }
 
