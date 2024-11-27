@@ -1,6 +1,8 @@
-import { User } from './user';
+import { Domicilie } from '../orders/domicilie';
+
+import { Rol, User } from './user';
 
 export interface Dealer extends User {
-  numberContact: string;
-  // rol: Rol.DEALER;
+  rol: Rol.DEALER;
+  domicilie: Domicilie[];
 }

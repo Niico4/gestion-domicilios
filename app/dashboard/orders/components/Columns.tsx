@@ -76,18 +76,6 @@ export const columns: Column<Order>[] = [
     },
   },
   {
-    id: 'dealer',
-    label: 'Repartidor',
-    cell: (item: Order) => {
-      return (
-        <span>
-          {item.orderShipping.dealer.firstName}{' '}
-          {item.orderShipping.dealer.lastName[0]}.
-        </span>
-      );
-    },
-  },
-  {
     id: 'totalPayment',
     label: 'Monto Total',
     cell: (item: Order) => {
