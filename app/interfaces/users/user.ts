@@ -12,4 +12,5 @@ export enum Rol {
   ADMIN = 'Administrador',
   DEALER = 'Repartidor',
   ORDER_MANAGER = 'Gestor de Domicilios',
+  CUSTOMER = 'Cliente',
 }
