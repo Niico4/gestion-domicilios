@@ -8,35 +8,17 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import React from 'react';
+import React, { FC } from 'react';
 import { IconPlus } from '@tabler/icons-react';
-import toast from 'react-hot-toast';
-import { useForm } from 'react-hook-form';
+
+import { Order } from '@/app/interfaces/orders/order';
 
 import FormNewOrder from '../components/FormNewOrder';
-import { NewOrderType } from '../../../validations/newOrderSchema';
 
-const ModalNewOrder = () => {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const { reset } = useForm();
-
-  const onSubmit = (data: NewOrderType) => {
-    console.log('Datos de la orden', data);
-    try {
-      const response = {
-        ...data,
-      };
-
-      console.log('Datos enviados', response);
-      toast.success('Orden agregada correctamente');
-
-      onClose();
-      reset();
-    } catch (error) {
-      console.error(error);
-      toast.error('No se pudo agregar la orden');
-    }
-  };
+const ModalNewOrder: FC<{
+  addOrder: (newOrder: Order) => void;
+}> = ({ addOrder }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
@@ -61,7 +43,7 @@ const ModalNewOrder = () => {
                 Agrega una nueva orden
               </ModalHeader>
               <ModalBody>
-                <FormNewOrder onSubmit={onSubmit} onClose={onClose} />
+                <FormNewOrder onClose={onClose} addOrder={addOrder} />
               </ModalBody>
             </>
           )}

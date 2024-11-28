@@ -1,73 +1,99 @@
 'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Button,
-  Checkbox,
-  CheckboxGroup,
-  Input,
-  Textarea,
-} from '@nextui-org/react';
+import { Button, Input, Radio, RadioGroup, Textarea } from '@nextui-org/react';
 import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 import { PaymentType } from '@/app/interfaces/payments/payment-method';
-import { OrderState } from '@/app/interfaces/orders/order-state';
+import { Order, OrderState } from '@/app/interfaces/orders/order';
+import { generateClientID, generateOrderID } from '@/app/lib/generateID';
 
-import {
-  newOrderSchema,
-  NewOrderType,
-} from '../../../validations/newOrderSchema';
+import { newOrderSchema } from '../../../validations/newOrderSchema';
+
+const defaultValues: Order = {
+  id: '',
+  client: {
+    id: '',
+    firstName: '',
+    lastName: '',
+    numberContact: '',
+    email: '',
+    address: '',
+    paymentMethod: {
+      paymentType: PaymentType.CASH,
+      accountNumber: '',
+      cardNumber: '',
+      expirationDate: '',
+      securityCode: '',
+    },
+  },
+  products: [],
+  orderState: OrderState.PENDING,
+  orderDate: new Date(),
+  totalPayment: 0,
+};
 
 const FormNewOrder: FC<{
-  onSubmit: (data: NewOrderType) => void;
   onClose: () => void;
-}> = ({ onClose, onSubmit }) => {
+  addOrder: (newOrder: Order) => void;
+}> = ({ onClose, addOrder }) => {
   const {
     register,
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(newOrderSchema),
-    defaultValues: {
-      clientFirstName: '',
-      clientLastName: '',
-      numberContact: '',
-      address: '',
-      products: '',
-      dealerFirstName: '',
-      dealerLastName: '',
-      totalPayment: 0,
-      paymentType: [PaymentType.CASH],
-      orderState: [OrderState.PENDING],
-    },
+    defaultValues,
   });
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const onSubmit = (data: Order) => {
+    try {
+      const newOrder = {
+        ...data,
+        id: generateOrderID(),
+        client: {
+          ...data.client,
+          id: generateClientID(),
+        },
+      };
+      addOrder(newOrder);
+
+      console.log('Datos enviados', newOrder);
+      toast.success('Orden agregada correctamente');
+    } catch (error) {
+      console.error(error);
+      toast.error('No se pudo agregar la orden');
+    } finally {
+      onClose();
+      reset();
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
-        <span>Cliente</span>
+        <span>Datos del Cliente</span>
         <div className="flex gap-4">
           <Input
             type="text"
             label="Nombre"
             isRequired
-            isInvalid={!!errors.clientFirstName}
-            errorMessage={errors.clientFirstName?.message}
-            {...register('clientFirstName')}
+            isInvalid={!!errors.client?.firstName}
+            errorMessage={errors.client?.firstName?.message}
+            {...register('client.firstName')}
           />
           <Input
             type="text"
             label="Apellido"
             isRequired
-            isInvalid={!!errors.clientLastName}
-            errorMessage={errors.clientLastName?.message}
-            {...register('clientLastName')}
+            isInvalid={!!errors.client?.lastName}
+            errorMessage={errors.client?.lastName?.message}
+            {...register('client.lastName')}
           />
         </div>
         <div className="flex gap-4">
@@ -75,39 +101,17 @@ const FormNewOrder: FC<{
             type="text"
             label="Número de Contacto"
             isRequired
-            isInvalid={!!errors.numberContact}
-            errorMessage={errors.numberContact?.message}
-            {...register('numberContact')}
+            isInvalid={!!errors.client?.numberContact}
+            errorMessage={errors.client?.numberContact?.message}
+            {...register('client.numberContact')}
           />
           <Input
             type="text"
             label="Dirección"
             isRequired
-            isInvalid={!!errors.address}
-            errorMessage={errors.address?.message}
-            {...register('address')}
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <span>Repartidor</span>
-        <div className="flex gap-4">
-          <Input
-            type="text"
-            label="Nombre"
-            isRequired
-            isInvalid={!!errors.dealerFirstName}
-            errorMessage={errors.dealerFirstName?.message}
-            {...register('dealerFirstName')}
-          />
-          <Input
-            type="text"
-            label="Apellido"
-            isRequired
-            isInvalid={!!errors.dealerLastName}
-            errorMessage={errors.dealerLastName?.message}
-            {...register('dealerLastName')}
+            isInvalid={!!errors.client?.address}
+            errorMessage={errors.client?.address?.message}
+            {...register('client.address')}
           />
         </div>
       </div>
@@ -116,6 +120,7 @@ const FormNewOrder: FC<{
         <span>Extras</span>
         <Textarea
           label="Productos"
+          placeholder="Separa por comas(,) cada producto"
           isRequired
           isInvalid={!!errors.products}
           errorMessage={errors.products?.message}
@@ -133,51 +138,43 @@ const FormNewOrder: FC<{
         />
       </div>
       <div className="flex gap-2">
-        <CheckboxGroup
+        <RadioGroup
           label="Tipo de Pago"
           orientation="horizontal"
           color="secondary"
-          value={watch('paymentType')}
-          onChange={(values) =>
-            setValue('paymentType', values as PaymentType[])
+          value={watch('client.paymentMethod.paymentType')}
+          onValueChange={(value) =>
+            setValue('client.paymentMethod.paymentType', value as PaymentType)
           }
-          isInvalid={!!errors.paymentType}
-          errorMessage={errors.paymentType?.message}
+          isInvalid={!!errors.client?.paymentMethod?.paymentType}
+          errorMessage={errors.client?.paymentMethod?.paymentType?.message}
           isRequired
         >
           {Object.values(PaymentType).map((payment) => (
-            <Checkbox
-              value={payment}
-              key={payment}
-              onChange={(e) => handleOnChange(e)}
-            >
+            <Radio value={payment} key={payment}>
               {payment}
-            </Checkbox>
+            </Radio>
           ))}
-        </CheckboxGroup>
+        </RadioGroup>
       </div>
 
       <div className="flex gap-2">
-        <CheckboxGroup
+        <RadioGroup
           label="Estado del Pedido"
           orientation="horizontal"
           color="secondary"
           value={watch('orderState')}
-          onChange={(values) => setValue('orderState', values as OrderState[])}
+          onValueChange={(value) => setValue('orderState', value as OrderState)}
           isInvalid={!!errors.orderState}
           errorMessage={errors.orderState?.message}
           isRequired
         >
           {Object.values(OrderState).map((state) => (
-            <Checkbox
-              value={state}
-              key={state}
-              onChange={(e) => handleOnChange(e)}
-            >
+            <Radio value={state} key={state}>
               {state}
-            </Checkbox>
+            </Radio>
           ))}
-        </CheckboxGroup>
+        </RadioGroup>
       </div>
 
       <div className="flex items-center gap-4 justify-end">

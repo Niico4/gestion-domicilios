@@ -4,23 +4,31 @@ import { Tooltip, Button, Chip } from '@nextui-org/react';
 import { IconEdit, IconTrash } from '@tabler/icons-react';
 
 import { Column } from '@/app/interfaces/table';
-import { Order } from '@/app/interfaces/orders/order';
-import { OrderState } from '@/app/interfaces/orders/order-state';
+import { Order, OrderState } from '@/app/interfaces/orders/order';
 
 const getOrderStateClass = (orderState: OrderState) => {
   switch (orderState) {
-    case OrderState.CANCELED:
-      return 'danger';
     case OrderState.PENDING:
       return 'warning';
+    case OrderState.CANCELED:
+      return 'danger';
+    case OrderState.ORDER_SENT:
+      return 'secondary';
     case OrderState.DELIVERED:
       return 'success';
     default:
-      return 'secondary';
+      return 'default';
   }
 };
 
 export const columns: Column<Order>[] = [
+  {
+    id: 'numberOrder',
+    label: 'ID',
+    cell: (item: Order) => {
+      return <span>{item.id}</span>;
+    },
+  },
   {
     id: 'clientName',
     label: 'Cliente',
@@ -61,7 +69,7 @@ export const columns: Column<Order>[] = [
     id: 'paymentType',
     label: 'Tipo de Pago',
     cell: (item: Order) => {
-      return <span>{item.client.paymentMethod.paymentType}</span>;
+      return <span>{item.client?.paymentMethod?.paymentType}</span>;
     },
   },
   {
@@ -87,8 +95,8 @@ export const columns: Column<Order>[] = [
     label: 'Acciones',
     cell: (
       item: Order,
-      handleEdit: (orderId: string) => void,
-      handleDelete: (orderId: string) => void,
+      handleEdit: (id: Order) => void,
+      handleDelete: (id: string) => void,
     ) => {
       return (
         <div className="flex items-center gap-4">
@@ -99,7 +107,7 @@ export const columns: Column<Order>[] = [
               startContent={<IconEdit stroke={1.5} />}
               size="sm"
               variant="flat"
-              onClick={() => handleEdit(item.id)}
+              onClick={() => handleEdit(item)}
             />
           </Tooltip>
           <Tooltip content="Eliminar Domicilio" showArrow color="danger">
