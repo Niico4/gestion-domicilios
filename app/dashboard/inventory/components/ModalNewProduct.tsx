@@ -8,36 +8,17 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import React from 'react';
+import React, { FC } from 'react';
 import { IconPlus } from '@tabler/icons-react';
-import toast from 'react-hot-toast';
-import { useForm } from 'react-hook-form';
 
-import { NewProductType } from '@/app/validations/newProductSchema';
+import { Product } from '@/app/interfaces/products/products';
 
 import FormNewProduct from './FormNewProduct';
 
-const ModalNewProduct = () => {
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-  const { reset } = useForm();
-
-  const onSubmit = (data: NewProductType) => {
-    console.log('Datos de la orden', data);
-    try {
-      const response = {
-        ...data,
-      };
-
-      console.log('Datos enviados', response);
-      toast.success('Orden agregada correctamente');
-
-      onClose();
-      reset();
-    } catch (error) {
-      console.error(error);
-      toast.error('No se pudo agregar la orden');
-    }
-  };
+const ModalNewProduct: FC<{
+  addProduct: (newProduct: Product) => void;
+}> = ({ addProduct }) => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
@@ -62,7 +43,7 @@ const ModalNewProduct = () => {
                 Agrega un nuevo producto
               </ModalHeader>
               <ModalBody>
-                <FormNewProduct onSubmit={onSubmit} onClose={onClose} />
+                <FormNewProduct onClose={onClose} addProduct={addProduct} />
               </ModalBody>
             </>
           )}

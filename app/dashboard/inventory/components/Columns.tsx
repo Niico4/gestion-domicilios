@@ -8,6 +8,13 @@ import { Product } from '@/app/interfaces/products/products';
 
 export const columns: Column<Product>[] = [
   {
+    id: 'idProduct',
+    label: 'ID',
+    cell: (item: Product) => {
+      return <span>{item.id}</span>;
+    },
+  },
+  {
     id: 'productName',
     label: 'Nombre del Producto',
     cell: (item: Product) => {
@@ -45,7 +52,7 @@ export const columns: Column<Product>[] = [
     label: 'Acciones',
     cell: (
       item: Product,
-      handleEdit: (productId: string) => void,
+      handleEdit: (producto: Product) => void,
       handleDelete: (productId: string) => void,
     ) => {
       return (
@@ -57,7 +64,7 @@ export const columns: Column<Product>[] = [
               startContent={<IconEdit stroke={1.5} />}
               size="sm"
               variant="flat"
-              onClick={() => handleEdit(item.id)}
+              onClick={() => handleEdit(item)}
             />
           </Tooltip>
           <Tooltip content="Eliminar Producto" showArrow color="danger">

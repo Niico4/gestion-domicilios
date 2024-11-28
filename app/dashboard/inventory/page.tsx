@@ -2,12 +2,9 @@ import { Metadata } from 'next';
 import React from 'react';
 
 import Title from '@/app/components/shared/Title';
-import TableData from '@/app/components/shared/data-table/TableData';
-import { inventoryMock } from '@/app/mock/inventoryMock';
 
-import { columns } from './components/Columns';
-import ModalNewProduct from './components/ModalNewProduct';
 import ChartSection from './ChartSection';
+import TableInventory from './components/TableInventory';
 
 export const metadata: Metadata = {
   title: 'Inventario | DomiSys',
@@ -21,11 +18,7 @@ export default function InventoryPage() {
       <Title title="Control de Inventario" />
       <div className="mt-10 flex items-start gap-6">
         <section className="w-full">
-          <TableData
-            data={inventoryMock}
-            columns={columns}
-            headerComponent={ModalNewProduct}
-          />
+          <TableInventory />
         </section>
         <ChartSection />
       </div>

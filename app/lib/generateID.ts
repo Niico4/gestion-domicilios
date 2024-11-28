@@ -11,3 +11,9 @@ export const generateClientID = (prefix: string = 'C-') => {
 
   return `${prefix}${numberPart}`;
 };
+
+export const generateProductID = (prefix: string = 'P-') => {
+  const numberPart = parseInt(uuid().replace(/-/g, '').slice(0, 4), 16);
+
+  return `${prefix}${numberPart}`;
+};
