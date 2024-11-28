@@ -25,17 +25,11 @@ const TableData = <T extends { id: string }>({
   data,
   columns,
   headerComponent: HeaderComponent,
+  handleDelete,
+  handleEdit,
 }: TableDataProps<T>) => {
   const { page, items, goToPage, pages } = usePagination(data);
 
-  const handleEdit = (orderId: string) => {
-    console.log('Editar orden con ID:', orderId);
-  };
-
-  const handleDelete = (orderId: string) => {
-    const confirmed = window.confirm('¿Estás seguro de eliminar esta orden?');
-    console.log(`Usuario ${orderId}`, confirmed);
-  };
   return (
     <Card>
       <CardHeader className="justify-between">

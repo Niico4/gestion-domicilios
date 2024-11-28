@@ -3,8 +3,8 @@ export interface Column<T> {
   label: string;
   cell?: (
     data: T,
-    handleEdit: (orderId: string) => void,
-    handleDelete: (orderId: string) => void,
+    handleEdit: (item: T) => void,
+    handleDelete: (id: string) => void,
   ) => JSX.Element;
 }
 
@@ -12,4 +12,6 @@ export type TableDataProps<T> = {
   data: T[];
   columns: Column<T>[];
   headerComponent: () => JSX.Element;
+  handleEdit: (item: T) => void;
+  handleDelete: (id: string) => void;
 };
