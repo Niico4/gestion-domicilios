@@ -4,7 +4,7 @@ import React from 'react';
 import Title from '@/app/components/shared/Title';
 
 import ChartSection from './ChartSection';
-import TableInventory from './components/TableInventory';
+import TableInventory from './components/table/TableInventory';
 
 export const metadata: Metadata = {
   title: 'Inventario | DomiSys',

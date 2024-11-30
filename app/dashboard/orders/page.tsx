@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import Title from '@/app/components/shared/Title';
 
-import TableOrders from './components/TableOrders';
+import TableOrders from './components/table/TableOrders';
 
 export const metadata: Metadata = {
   title: 'Domicilios | DomiSys',

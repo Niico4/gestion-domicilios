@@ -1,10 +1,10 @@
 'use client';
 
-import { Tooltip, Button, Chip } from '@nextui-org/react';
-import { IconEdit, IconTrash } from '@tabler/icons-react';
+import { Chip } from '@nextui-org/react';
 
 import { Column } from '@/app/interfaces/table';
 import { Order, OrderState } from '@/app/interfaces/orders/order';
+import ButtonsHandle from '@/app/components/shared/ButtonsHandle';
 
 const getOrderStateClass = (orderState: OrderState) => {
   switch (orderState) {
@@ -95,32 +95,16 @@ export const columns: Column<Order>[] = [
     label: 'Acciones',
     cell: (
       item: Order,
-      handleEdit: (id: Order) => void,
-      handleDelete: (id: string) => void,
+      handleEdit: (order: Order) => void,
+      handleDelete: (orderId: string) => void,
     ) => {
       return (
-        <div className="flex items-center gap-4">
-          <Tooltip content="Editar Domicilio" showArrow color="secondary">
-            <Button
-              color="secondary"
-              isIconOnly
-              startContent={<IconEdit stroke={1.5} />}
-              size="sm"
-              variant="flat"
-              onClick={() => handleEdit(item)}
-            />
-          </Tooltip>
-          <Tooltip content="Eliminar Domicilio" showArrow color="danger">
-            <Button
-              color="danger"
-              isIconOnly
-              startContent={<IconTrash stroke={1.5} />}
-              size="sm"
-              variant="flat"
-              onClick={() => handleDelete(item.id)}
-            />
-          </Tooltip>
-        </div>
+        <ButtonsHandle
+          label="Domicilio"
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+          item={item}
+        />
       );
     },
   },

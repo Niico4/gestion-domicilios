@@ -1,11 +1,13 @@
 import { Order, OrderState } from '../interfaces/orders/order';
 import { PaymentType } from '../interfaces/payments/payment-method';
+import { Rol } from '../interfaces/users/user';
 
 export const mockOrders: Order[] = [
   {
     id: 'D-1093',
     client: {
       id: 'C-8462',
+      rol: Rol.CUSTOMER,
       firstName: 'Carlos',
       lastName: 'Pérez',
       numberContact: '3101234567',
@@ -46,6 +48,7 @@ export const mockOrders: Order[] = [
     id: 'D-1094',
     client: {
       id: 'C-8463',
+      rol: Rol.CUSTOMER,
       firstName: 'María',
       lastName: 'Gómez',
       numberContact: '3159876543',
@@ -89,6 +92,7 @@ export const mockOrders: Order[] = [
     id: 'D-1095',
     client: {
       id: 'C-8464',
+      rol: Rol.CUSTOMER,
       firstName: 'Andrés',
       lastName: 'López',
       numberContact: '3214567890',
@@ -127,6 +131,7 @@ export const mockOrders: Order[] = [
     id: 'D-1096',
     client: {
       id: 'C-8465',
+      rol: Rol.CUSTOMER,
       firstName: 'Lucía',
       lastName: 'Ramírez',
       numberContact: '3106543210',
@@ -158,6 +163,7 @@ export const mockOrders: Order[] = [
     id: 'D-1097',
     client: {
       id: 'C-8466',
+      rol: Rol.CUSTOMER,
       firstName: 'Pedro',
       lastName: 'Hernández',
       numberContact: '3209876543',
@@ -194,6 +200,7 @@ export const mockOrders: Order[] = [
     id: 'D-1098',
     client: {
       id: 'C-8467',
+      rol: Rol.CUSTOMER,
       firstName: 'Ana',
       lastName: 'Pérez',
       numberContact: '3198765432',
@@ -225,6 +232,7 @@ export const mockOrders: Order[] = [
     id: 'D-1099',
     client: {
       id: 'C-8468',
+      rol: Rol.CUSTOMER,
       firstName: 'Marta',
       lastName: 'Sanchez',
       numberContact: '3154321098',
@@ -259,6 +267,7 @@ export const mockOrders: Order[] = [
     id: 'D-1100',
     client: {
       id: 'C-8469',
+      rol: Rol.CUSTOMER,
       firstName: 'Luis',
       lastName: 'Torres',
       numberContact: '3145432109',
@@ -290,6 +299,7 @@ export const mockOrders: Order[] = [
     id: 'D-1101',
     client: {
       id: 'C-8470',
+      rol: Rol.CUSTOMER,
       firstName: 'Felipe',
       lastName: 'Gutiérrez',
       numberContact: '3123456789',
@@ -326,6 +336,7 @@ export const mockOrders: Order[] = [
     id: 'D-1102',
     client: {
       id: 'C-8471',
+      rol: Rol.CUSTOMER,
       firstName: 'Laura',
       lastName: 'Mendoza',
       numberContact: '3136549870',
@@ -357,6 +368,7 @@ export const mockOrders: Order[] = [
     id: 'D-1103',
     client: {
       id: 'C-8472',
+      rol: Rol.CUSTOMER,
       firstName: 'Ricardo',
       lastName: 'Alvarado',
       numberContact: '3206543210',
@@ -388,6 +400,7 @@ export const mockOrders: Order[] = [
     id: 'D-1104',
     client: {
       id: 'C-8473',
+      rol: Rol.CUSTOMER,
       firstName: 'Carolina',
       lastName: 'Vargas',
       numberContact: '3119876543',
@@ -422,6 +435,7 @@ export const mockOrders: Order[] = [
     id: 'D-1105',
     client: {
       id: 'C-8474',
+      rol: Rol.CUSTOMER,
       firstName: 'Javier',
       lastName: 'Rojas',
       numberContact: '3186543210',
@@ -453,6 +467,7 @@ export const mockOrders: Order[] = [
     id: 'D-1106',
     client: {
       id: 'C-8475',
+      rol: Rol.CUSTOMER,
       firstName: 'David',
       lastName: 'Paredes',
       numberContact: '3195432109',
@@ -489,6 +504,7 @@ export const mockOrders: Order[] = [
     id: 'D-1107',
     client: {
       id: 'C-8476',
+      rol: Rol.CUSTOMER,
       firstName: 'Valentina',
       lastName: 'González',
       numberContact: '3154321098',
@@ -520,6 +536,7 @@ export const mockOrders: Order[] = [
     id: 'D-1108',
     client: {
       id: 'C-8477',
+      rol: Rol.CUSTOMER,
       firstName: 'Mónica',
       lastName: 'Hernández',
       numberContact: '3101239876',
@@ -551,6 +568,7 @@ export const mockOrders: Order[] = [
     id: 'D-1109',
     client: {
       id: 'C-8478',
+      rol: Rol.CUSTOMER,
       firstName: 'Juan',
       lastName: 'Martínez',
       numberContact: '3209876543',
@@ -582,6 +600,7 @@ export const mockOrders: Order[] = [
     id: 'D-1110',
     client: {
       id: 'C-8479',
+      rol: Rol.CUSTOMER,
       firstName: 'Ricardo',
       lastName: 'Lozano',
       numberContact: '3148765432',
@@ -616,6 +635,7 @@ export const mockOrders: Order[] = [
     id: 'D-1111',
     client: {
       id: 'C-8480',
+      rol: Rol.CUSTOMER,
       firstName: 'Sandra',
       lastName: 'Pérez',
       numberContact: '3189876543',
@@ -647,6 +667,7 @@ export const mockOrders: Order[] = [
     id: 'D-1112',
     client: {
       id: 'C-8481',
+      rol: Rol.CUSTOMER,
       firstName: 'Carlos',
       lastName: 'Torres',
       numberContact: '3198765432',
@@ -683,6 +704,7 @@ export const mockOrders: Order[] = [
     id: 'D-1113',
     client: {
       id: 'C-8482',
+      rol: Rol.CUSTOMER,
       firstName: 'Alejandra',
       lastName: 'Sánchez',
       numberContact: '3157654321',
@@ -714,6 +736,7 @@ export const mockOrders: Order[] = [
     id: 'D-1114',
     client: {
       id: 'C-8483',
+      rol: Rol.CUSTOMER,
       firstName: 'Mauricio',
       lastName: 'García',
       numberContact: '3191234567',

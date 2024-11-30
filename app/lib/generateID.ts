@@ -13,7 +13,7 @@ export const generateClientID = (prefix: string = 'C-') => {
 };
 
 export const generateProductID = (prefix: string = 'P-') => {
-  const numberPart = parseInt(uuid().replace(/-/g, '').slice(0, 4), 16);
+  const numberPart = parseInt(uuid().replace(/-/g, '').slice(0, 3), 16);
 
   return `${prefix}${numberPart}`;
 };

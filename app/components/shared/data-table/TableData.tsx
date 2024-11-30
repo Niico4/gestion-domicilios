@@ -14,6 +14,7 @@ import {
   CardFooter,
   Pagination,
   Input,
+  Spinner,
 } from '@nextui-org/react';
 import React from 'react';
 import { IconSearch } from '@tabler/icons-react';
@@ -23,10 +24,11 @@ import usePagination from '@/app/hooks/usePagination';
 
 const TableData = <T extends { id: string }>({
   data,
+  isLoading,
   columns,
   headerComponent: HeaderComponent,
   handleDelete,
-  handleEdit,
+  handleUpdate,
 }: TableDataProps<T>) => {
   const { page, items, goToPage, pages } = usePagination(data);
 
@@ -49,6 +51,10 @@ const TableData = <T extends { id: string }>({
             )}
           </TableHeader>
           <TableBody
+            isLoading={isLoading}
+            loadingContent={
+              <Spinner label="Cargando datos..." color="secondary" />
+            }
             emptyContent={'No se encontraron resultados'}
             items={items}
           >
@@ -57,7 +63,7 @@ const TableData = <T extends { id: string }>({
                 {columns.map((column) => (
                   <TableCell key={column.id}>
                     {column.cell
-                      ? column.cell(item, handleEdit, handleDelete)
+                      ? column.cell(item, handleUpdate, handleDelete)
                       : getKeyValue(item, column.id)}
                   </TableCell>
                 ))}
