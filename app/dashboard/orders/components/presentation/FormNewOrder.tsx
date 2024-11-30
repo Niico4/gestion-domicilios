@@ -1,79 +1,19 @@
-'use client';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input, Radio, RadioGroup, Textarea } from '@nextui-org/react';
 import React, { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import { Button, Input, Radio, RadioGroup, Textarea } from '@nextui-org/react';
 
-import { PaymentType } from '@/app/interfaces/payments/payment-method';
 import { Order, OrderState } from '@/app/interfaces/orders/order';
-import { generateClientID, generateOrderID } from '@/app/lib/generateID';
+import { PaymentType } from '@/app/interfaces/payments/payment-method';
+import { FormNewItemFormProps } from '@/app/interfaces/formNewItem';
 
-import { newOrderSchema } from '../../../validations/newOrderSchema';
-
-const defaultValues: Order = {
-  id: '',
-  client: {
-    id: '',
-    firstName: '',
-    lastName: '',
-    numberContact: '',
-    email: '',
-    address: '',
-    paymentMethod: {
-      paymentType: PaymentType.CASH,
-      accountNumber: '',
-      cardNumber: '',
-      expirationDate: '',
-      securityCode: '',
-    },
-  },
-  products: [],
-  orderState: OrderState.PENDING,
-  orderDate: new Date(),
-  totalPayment: 0,
-};
-
-const FormNewOrder: FC<{
-  onClose: () => void;
-  addOrder: (newOrder: Order) => void;
-}> = ({ onClose, addOrder }) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(newOrderSchema),
-    defaultValues,
-  });
-
-  const onSubmit = (data: Order) => {
-    try {
-      const newOrder = {
-        ...data,
-        id: generateOrderID(),
-        client: {
-          ...data.client,
-          id: generateClientID(),
-        },
-      };
-      addOrder(newOrder);
-
-      console.log('Datos enviados', newOrder);
-      toast.success('Orden agregada correctamente');
-    } catch (error) {
-      console.error(error);
-      toast.error('No se pudo agregar la orden');
-    } finally {
-      onClose();
-      reset();
-    }
-  };
-
+const FormNewOrder: FC<FormNewItemFormProps<Order>> = ({
+  register,
+  errors,
+  handleSubmit,
+  onClose,
+  onSubmit,
+  setValue,
+  watch,
+}) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">

@@ -1,10 +1,8 @@
 'use client';
 
-import { Tooltip, Button } from '@nextui-org/react';
-import { IconEdit, IconTrash } from '@tabler/icons-react';
-
 import { Column } from '@/app/interfaces/table';
 import { Product } from '@/app/interfaces/products/products';
+import ButtonsHandle from '@/app/components/shared/ButtonsHandle';
 
 export const columns: Column<Product>[] = [
   {
@@ -56,28 +54,12 @@ export const columns: Column<Product>[] = [
       handleDelete: (productId: string) => void,
     ) => {
       return (
-        <div className="flex items-center gap-4">
-          <Tooltip content="Editar Producto" showArrow color="secondary">
-            <Button
-              color="secondary"
-              isIconOnly
-              startContent={<IconEdit stroke={1.5} />}
-              size="sm"
-              variant="flat"
-              onClick={() => handleEdit(item)}
-            />
-          </Tooltip>
-          <Tooltip content="Eliminar Producto" showArrow color="danger">
-            <Button
-              color="danger"
-              isIconOnly
-              startContent={<IconTrash stroke={1.5} />}
-              size="sm"
-              variant="flat"
-              onClick={() => handleDelete(item.id)}
-            />
-          </Tooltip>
-        </div>
+        <ButtonsHandle
+          label="Producto"
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+          item={item}
+        />
       );
     },
   },

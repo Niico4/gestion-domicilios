@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import {
   Button,
   Modal,
@@ -8,28 +9,32 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import React, { FC } from 'react';
-import { IconPlus } from '@tabler/icons-react';
 
-import { Order } from '@/app/interfaces/orders/order';
+interface ModalFormProps<T> {
+  triggerText: string;
+  modalTitle: string;
+  onSubmit: (data: T) => void;
+  children: React.ReactNode;
+}
 
-import FormNewOrder from '../components/FormNewOrder';
-
-const ModalNewOrder: FC<{
-  addOrder: (newOrder: Order) => void;
-}> = ({ addOrder }) => {
+const ModalForm = <T,>({
+  triggerText,
+  modalTitle,
+  onSubmit,
+  children,
+}: ModalFormProps<T>) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <>
       <Button
         onPress={onOpen}
-        startContent={<IconPlus />}
         color="secondary"
         className="bg-primary-gradient font-semibold text-lg tracking-wider"
       >
-        Crear Domicilio
+        {triggerText}
       </Button>
+
       <Modal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
@@ -40,10 +45,13 @@ const ModalNewOrder: FC<{
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Agrega una nueva orden
+                {modalTitle}
               </ModalHeader>
               <ModalBody>
-                <FormNewOrder onClose={onClose} addOrder={addOrder} />
+                {React.cloneElement(children as React.ReactElement, {
+                  onClose,
+                  onSubmit,
+                })}
               </ModalBody>
             </>
           )}
@@ -53,4 +61,4 @@ const ModalNewOrder: FC<{
   );
 };
 
-export default ModalNewOrder;
+export default ModalForm;

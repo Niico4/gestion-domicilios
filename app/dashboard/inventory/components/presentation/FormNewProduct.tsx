@@ -1,60 +1,18 @@
-'use client';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Checkbox, CheckboxGroup, Input } from '@nextui-org/react';
 import React, { FC } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
 
+import { FormNewItemFormProps } from '@/app/interfaces/formNewItem';
 import { Product } from '@/app/interfaces/products/products';
-import { generateProductID } from '@/app/lib/generateID';
 
-import {
-  newProductSchema,
-  NewProductType,
-} from '../../../validations/newProductSchema';
-
-const FormNewProduct: FC<{
-  onClose: () => void;
-  addProduct: (newProduct: Product) => void;
-}> = ({ onClose, addProduct }) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    reset,
-    formState: { errors },
-  } = useForm({
-    resolver: zodResolver(newProductSchema),
-    defaultValues: {
-      nameProduct: '',
-      price: 0,
-      quantity: 0,
-      inStock: true,
-    },
-  });
-
-  const onSubmit = (data: NewProductType) => {
-    console.log('Datos del producto', data);
-    try {
-      const newProduct = {
-        ...data,
-        id: generateProductID(),
-      };
-
-      addProduct(newProduct);
-
-      console.log('Datos enviados', newProduct);
-      toast.success('Producto agregado correctamente');
-
-      onClose();
-      reset();
-    } catch (error) {
-      console.error(error);
-      toast.error('No se pudo agregar el producto');
-    }
-  };
-
+const FormNewProduct: FC<FormNewItemFormProps<Product>> = ({
+  register,
+  errors,
+  handleSubmit,
+  onClose,
+  onSubmit,
+  setValue,
+  watch,
+}) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div className="flex flex-col gap-2">
