@@ -1,6 +1,6 @@
-import { ChartConfig } from '../components/shared/charts/chart';
+import { ChartConfig } from '@/app/components/shared/charts/chart';
 
-export const chartData = [
+export const chartProductMockData = [
   { month: 'Enero', supplying: 186 },
   { month: 'Febrero', supplying: 305 },
   { month: 'Marzo', supplying: 237 },
@@ -15,7 +15,7 @@ export const chartData = [
   { month: 'Diciembre', supplying: 300 },
 ];
 
-export const chartConfig = {
+export const chartProductConfig = {
   supplying: {
     label: 'Abastecimiento: ',
     color: '#1e1e1e',

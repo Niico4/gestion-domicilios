@@ -1,5 +1,5 @@
 import { Order } from '../interfaces/orders/order';
-import { generateClientID, generateOrderID } from '../lib/generateID';
+import { generateClientID, generateOrderID } from '../utils/generateID';
 import { mockOrders } from '../mock/ordersMock';
 
 const loadOrdersFromLocalStorage = (): Order[] => {

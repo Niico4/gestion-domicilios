@@ -41,7 +41,7 @@ const TableData = <T extends { id: string }>({
           startContent={<IconSearch stroke={1.5} className="text-slate-500" />}
           className="w-[30%]"
         />
-        <HeaderComponent />
+        {HeaderComponent && <HeaderComponent />}
       </CardHeader>
       <CardBody>
         <Table aria-label="table with orders content">

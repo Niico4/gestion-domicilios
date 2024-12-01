@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function InventoryPage() {
   return (
-    <main className="h-full bg-white rounded-xl p-8">
+    <div>
       <Title title="Control de Inventario" />
       <div className="mt-10 flex items-start gap-6">
         <section className="w-full">
@@ -22,6 +22,6 @@ export default function InventoryPage() {
         </section>
         <ChartSection />
       </div>
-    </main>
+    </div>
   );
 }

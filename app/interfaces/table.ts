@@ -12,7 +12,7 @@ export type TableDataProps<T> = {
   data: T[];
   isLoading: boolean;
   columns: Column<T>[];
-  headerComponent: () => JSX.Element;
+  headerComponent?: () => JSX.Element;
   handleUpdate: (item: T) => void;
   handleDelete: (id: string) => void;
 };
