@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${raleway.className} antialiased `}>
+      <body className={`${raleway.className} antialiased`}>
         <NextUI>{children}</NextUI>
         <Toaster position="bottom-right" />
       </body>

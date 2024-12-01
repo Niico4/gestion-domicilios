@@ -4,7 +4,7 @@ import { Rol } from '../interfaces/users/user';
 
 export const mockOrders: Order[] = [
   {
-    id: 'D-1093',
+    id: 'O-1093',
     client: {
       id: 'C-8462',
       rol: Rol.CUSTOMER,
@@ -45,7 +45,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-01'),
   },
   {
-    id: 'D-1094',
+    id: 'O-1094',
     client: {
       id: 'C-8463',
       rol: Rol.CUSTOMER,
@@ -89,7 +89,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-02'),
   },
   {
-    id: 'D-1095',
+    id: 'O-1095',
     client: {
       id: 'C-8464',
       rol: Rol.CUSTOMER,
@@ -128,7 +128,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-03'),
   },
   {
-    id: 'D-1096',
+    id: 'O-1096',
     client: {
       id: 'C-8465',
       rol: Rol.CUSTOMER,
@@ -160,7 +160,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-04'),
   },
   {
-    id: 'D-1097',
+    id: 'O-1097',
     client: {
       id: 'C-8466',
       rol: Rol.CUSTOMER,
@@ -197,7 +197,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-05'),
   },
   {
-    id: 'D-1098',
+    id: 'O-1098',
     client: {
       id: 'C-8467',
       rol: Rol.CUSTOMER,
@@ -229,7 +229,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-06'),
   },
   {
-    id: 'D-1099',
+    id: 'O-1099',
     client: {
       id: 'C-8468',
       rol: Rol.CUSTOMER,
@@ -264,7 +264,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-07'),
   },
   {
-    id: 'D-1100',
+    id: 'O-1100',
     client: {
       id: 'C-8469',
       rol: Rol.CUSTOMER,
@@ -296,7 +296,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-08'),
   },
   {
-    id: 'D-1101',
+    id: 'O-1101',
     client: {
       id: 'C-8470',
       rol: Rol.CUSTOMER,
@@ -333,7 +333,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-09'),
   },
   {
-    id: 'D-1102',
+    id: 'O-1102',
     client: {
       id: 'C-8471',
       rol: Rol.CUSTOMER,
@@ -365,7 +365,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-10'),
   },
   {
-    id: 'D-1103',
+    id: 'O-1103',
     client: {
       id: 'C-8472',
       rol: Rol.CUSTOMER,
@@ -397,7 +397,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-11'),
   },
   {
-    id: 'D-1104',
+    id: 'O-1104',
     client: {
       id: 'C-8473',
       rol: Rol.CUSTOMER,
@@ -432,7 +432,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-12'),
   },
   {
-    id: 'D-1105',
+    id: 'O-1105',
     client: {
       id: 'C-8474',
       rol: Rol.CUSTOMER,
@@ -464,7 +464,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-13'),
   },
   {
-    id: 'D-1106',
+    id: 'O-1106',
     client: {
       id: 'C-8475',
       rol: Rol.CUSTOMER,
@@ -501,7 +501,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-14'),
   },
   {
-    id: 'D-1107',
+    id: 'O-1107',
     client: {
       id: 'C-8476',
       rol: Rol.CUSTOMER,
@@ -533,7 +533,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-15'),
   },
   {
-    id: 'D-1108',
+    id: 'O-1108',
     client: {
       id: 'C-8477',
       rol: Rol.CUSTOMER,
@@ -565,7 +565,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-16'),
   },
   {
-    id: 'D-1109',
+    id: 'O-1109',
     client: {
       id: 'C-8478',
       rol: Rol.CUSTOMER,
@@ -597,7 +597,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-17'),
   },
   {
-    id: 'D-1110',
+    id: 'O-1110',
     client: {
       id: 'C-8479',
       rol: Rol.CUSTOMER,
@@ -632,7 +632,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-18'),
   },
   {
-    id: 'D-1111',
+    id: 'O-1111',
     client: {
       id: 'C-8480',
       rol: Rol.CUSTOMER,
@@ -664,7 +664,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-19'),
   },
   {
-    id: 'D-1112',
+    id: 'O-1112',
     client: {
       id: 'C-8481',
       rol: Rol.CUSTOMER,
@@ -701,7 +701,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-20'),
   },
   {
-    id: 'D-1113',
+    id: 'O-1113',
     client: {
       id: 'C-8482',
       rol: Rol.CUSTOMER,
@@ -733,7 +733,7 @@ export const mockOrders: Order[] = [
     orderDate: new Date('2024-11-21'),
   },
   {
-    id: 'D-1114',
+    id: 'O-1114',
     client: {
       id: 'C-8483',
       rol: Rol.CUSTOMER,

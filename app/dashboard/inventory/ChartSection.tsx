@@ -2,7 +2,10 @@ import React from 'react';
 import { Card, CardHeader, CardFooter } from '@nextui-org/react';
 
 import LineChartDots from '@/app/components/shared/charts/LineChartDots';
-import { chartData, chartConfig } from '@/app/mock/inventoryChartMock';
+import {
+  chartProductMockData,
+  chartProductConfig,
+} from '@/app/mock/chart/inventoryChartMock';
 
 const dataCards = [
   {
@@ -44,10 +47,11 @@ const ChartSection = () => {
         title="Frecuencia de Abastecimiento"
         description=" Visualiza la periodicidad con la que se reabastecen los productos en
           tu inventario"
-        data={chartData}
-        chartConfig={chartConfig}
+        data={chartProductMockData}
+        chartConfig={chartProductConfig}
         xKey="month"
         yKey="supplying"
+        colorStroke="#559fff"
       />
     </section>
   );

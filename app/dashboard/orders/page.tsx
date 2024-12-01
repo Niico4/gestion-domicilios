@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 
 export default function OrdersPage() {
   return (
-    <main className="h-full bg-white rounded-xl p-8">
+    <div>
       <Title title="Gestión de Domicilios" />
       <article className="mt-10">
         <TableOrders />
       </article>
-    </main>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Product } from '../interfaces/products/products';
-import { generateProductID } from '../lib/generateID';
+import { generateProductID } from '../utils/generateID';
 import { inventoryMock } from '../mock/inventoryMock';
 
 const loadProductsFromLocalStorage = (): Product[] => {
