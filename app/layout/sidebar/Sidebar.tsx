@@ -17,13 +17,20 @@ import toast from 'react-hot-toast';
 import { IconCaretDown, IconLogout, IconSettings } from '@tabler/icons-react';
 
 import Logo from '@/app/components/shared/Logo';
-import { Rol } from '@/app/interfaces/users/user';
+import { useUserStore } from '@/app/store/useUserStore';
 
 import { navLinks } from '../routes/Sidebar.routes';
 import LinkItem from '../components/LinkItem';
 
 const Sidebar = () => {
   const { push } = useRouter();
+  const user = useUserStore((state) => state.user);
+
+  if (!user) return null;
+
+  const filteredNavLinks = navLinks.filter(({ roles }) =>
+    roles.includes(user.rol),
+  );
 
   const handleSignOut = () => {
     toast.success('Sesión cerrada correctamente');
@@ -38,7 +45,7 @@ const Sidebar = () => {
       <Logo className="text-[50px]" style={{ WebkitTextStroke: '0px' }} />
       <nav className="h-full flex flex-col justify-between">
         <ul className="flex flex-col gap-2">
-          {navLinks.map(({ name, href, icon }, index) => (
+          {filteredNavLinks.map(({ name, href, icon }, index) => (
             <li key={index}>
               <LinkItem href={href} name={name} icon={icon} />
             </li>
@@ -51,11 +58,13 @@ const Sidebar = () => {
                 <div className="flex items-center justify-between cursor-pointer">
                   <User
                     as="button"
-                    name="Zoe Lang"
-                    description={Rol.ADMIN}
+                    name={`${user.name} ${user.lastName[0]}.`}
+                    description={user.rol}
                     className="transition-transform"
                     avatarProps={{
-                      src: 'https://i.pravatar.cc/150?u=a04258114e29026702d',
+                      src: 'https://images.unsplash.com/broken',
+                      showFallback: true,
+                      name: user.name[0],
                     }}
                   />
                   <IconCaretDown stroke={1.5} className="text-slate-500" />
@@ -70,17 +79,19 @@ const Sidebar = () => {
                     <div className="flex gap-3">
                       <Avatar
                         isBordered
+                        showFallback
+                        name={user.name[0]}
                         radius="full"
                         size="md"
-                        src="https://i.pravatar.cc/150?u=a04258114e29026702d"
+                        src="https://images.unsplash.com/broken"
                       />
 
                       <div className="flex flex-col items-start justify-center">
                         <h4 className="text-small font-semibold leading-none text-default-600">
-                          Zoey Lang
+                          {user.name} {user.lastName}
                         </h4>
                         <h5 className="text-small tracking-tight text-default-500">
-                          @zoeylang
+                          {user.email}
                         </h5>
                       </div>
                     </div>

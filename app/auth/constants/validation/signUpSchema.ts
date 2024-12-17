@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { Rol } from '@/app/interfaces/users/user';
+
 export const signUpSchema = z
   .object({
     name: z
@@ -34,6 +36,9 @@ export const signUpSchema = z
     confirmPassword: z
       .string()
       .min(6, { message: 'Debes confirmar tu contraseña.' }),
+    rol: z.enum(Object.values(Rol) as [Rol, ...Rol[]], {
+      message: 'Debes elegir un rol.',
+    }),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Las contraseñas deben coincidir',

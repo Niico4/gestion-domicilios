@@ -1,9 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, Input } from '@nextui-org/react';
+import { Button, Input, Radio, RadioGroup } from '@nextui-org/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+
+import { Rol } from '@/app/interfaces/users/user';
+import { useUserStore } from '@/app/store/useUserStore';
 
 import {
   signUpSchema,
@@ -12,10 +15,14 @@ import {
 
 const FormSignUp = () => {
   const { push } = useRouter();
+  const setUser = useUserStore((state) => state.setUser);
+
   const {
     register,
     handleSubmit,
     reset,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(signUpSchema),
@@ -25,6 +32,7 @@ const FormSignUp = () => {
       email: '',
       password: '',
       confirmPassword: '',
+      rol: Rol.DEALER,
     },
   });
 
@@ -35,9 +43,10 @@ const FormSignUp = () => {
         lastName: data.lastName,
         email: data.email,
         password: data.password,
+        rol: data.rol,
       };
 
-      console.log('Datos enviados', response);
+      setUser(response);
       toast.success('Cuenta creada correctamente');
       setTimeout(() => {
         push('/dashboard/orders');
@@ -107,6 +116,24 @@ const FormSignUp = () => {
           errorMessage={errors.email?.message}
           {...register('email')}
         />
+      </div>
+      <div style={{ gridColumn: '1 / -1' }}>
+        <RadioGroup
+          label="Rol"
+          orientation="horizontal"
+          color="secondary"
+          value={watch('rol')}
+          onValueChange={(value) => setValue('rol', value as Rol)}
+          isInvalid={!!errors.rol}
+          errorMessage={errors.rol?.message}
+          isRequired
+        >
+          {Object.values(Rol).map((rol) => (
+            <Radio value={rol} key={rol}>
+              {rol}
+            </Radio>
+          ))}
+        </RadioGroup>
       </div>
       <Button
         type="submit"
